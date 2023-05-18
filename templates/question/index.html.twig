@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Question List{% endblock %}
+{% block sidenav %}
+    <ul>
+        {% for tag in tags %}
+            <li> <a href="{{path('question_tag', {'id' : tag.id})}}">{{tag.name}}</a></li>  
+        {% endfor %}
+    </ul>
+{% endblock %}
+{% block body %}
+    <div class="container mt-4">
+    {% for question in questions %}
+   
+        <h2>  Question Title :<a href="{{path('question_show', {'id': question.id})}}"> {{question.title}} </a></h2>
+
+        {% for tag in question.tags %}
+        <a class="btn" href="{{path('question_tag', {'id': tag.id})}}"> TAG {{tag.name}}</a>
+        
+        {% endfor %}
+        <p> question body : {{question.body}}</p>
+        <p>asked by {{question.user}}</p>
+        
+        <small>Posted on {{question.createdAt.date|date('d/m/Y')}}</small>
+
+    {% endfor %}
+    </div>
+{% endblock %}

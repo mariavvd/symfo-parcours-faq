@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}anwser{% endblock %}
+
+{% block body %}
+    <h1>anwser</h1>
+
+   
+        <p> {{ anwser.body }}</p>
+   
+
+    <a href="{{ path('backend_anwser_index', {'id': anwser.id}) }}">back to list</a>
+
+    <a href="{{ path('backend_anwser_edit', {'id': anwser.id}) }}">edit</a>
+
+    {{ include('backend/anwser/_delete_form.html.twig') }}
+{% endblock %}

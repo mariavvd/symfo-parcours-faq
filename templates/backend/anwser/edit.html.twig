@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit anwser{% endblock %}
+
+{% block body %}
+    <h1>Edit anwser</h1>
+    {{anwser.body}}
+
+    {{ include('backend/anwser/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('backend_anwser_index', {'id': anwser.id}) }}">back to list</a>
+{# <pre>
+    {{ dump(question) }}
+</pre> #}
+
+<pre>
+    {{ dump(anwser) }}
+</pre>
+    {{ include('backend/anwser/_delete_form.html.twig') }}
+{% endblock %}

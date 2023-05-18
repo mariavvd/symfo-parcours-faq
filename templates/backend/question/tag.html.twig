@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Questions by tag{% endblock %}
+
+{% block body %}
+    <h1>Questions by Tag : {{tag.name}}</h1>
+
+    <ul> {% for question in questions %}
+    <li> {{question.title}} </li>
+        <small><a href="{{path('backend_question_show', {'id': question.id})}}">link to the question</a></small>
+    {% endfor %}</ul>
+    
+{% endblock %}

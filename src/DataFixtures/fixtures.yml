@@ -1,0 +1,38 @@
+#App\Entity\Genre: # namespace de l'entité
+#    genre_{1..42}: #le nombre d'iteration d'entité souhaité ici : genre_1, genre_2...genre_23
+#        name: '<word()>' <-- numberBetween(0,5), sentence(),(...)  cf (https://github.com/fzaninotto/Faker#basic-usage)
+
+App\Entity\Tag:
+    tag_{1..10}:
+        name: '<word()>' 
+        # createdAt : '<dateTimeBetween("-200 days", "now")>'
+        # updatedAt : '<dateTimeBetween($createdAt, "now")>'
+
+
+App\Entity\User:
+    user_{1..20}:
+        username : '<username()>' 
+        password : '<password()>'
+        email : '<email()>'
+        createdAt : '<dateTimeBetween("-200 days", "now")>'
+        updatedAt : '<dateTimeBetween($createdAt, "now")>' 
+        roles: '<randomElements(["ROLE_USER", "ROLE_ADMIN", "ROLE_MODERATOR"])>'
+        
+
+App\Entity\Question:
+    question_{1..12}:
+        title : '<text()>' 
+        body : '<text()>' 
+        createdAt : '<dateTimeBetween("-200 days", "now")>'
+        updatedAt : '<dateTimeBetween($createdAt, "now")>' 
+        tags : '<numberBetween(1, 3)>x @tag*'
+        user: '@user*'
+      
+
+App\Entity\Anwser:
+    answer_{1..20}:
+        body: '<text()>' 
+        createdAt : '<dateTimeBetween("-100 days", "now")>'
+        updatedAt : '<dateTimeBetween($createdAt, "now")>'
+        question: '@question*'
+        user: '@user*'

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les réponses à une question{% endblock %}
+
+{% block body %}
+
+    {% for anwser in question.anwsers %}
+       <p> {{anwser.body}}</p>
+    {% endfor %}
+
+{% endblock %}

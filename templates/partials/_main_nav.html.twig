@@ -1,0 +1,52 @@
+{% block main_nav %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+   
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"  aria-label="Togglenavigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        
+        <ul class="navbar-nav">
+            {% if not app.user  %}
+            <li class="nav-item active">
+                    <a class="nav-link" href="{{path('home')}}">Home <span class="sr-only">(current)</span></a>
+                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{path('app_login')}}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{path('app_signin')}}">Signin</a>
+            </li>
+            {% else %}
+            <li class="nav-item active">
+                    <a class="nav-link" href="{{path('backend_question_index')}}">Back home <span class="sr-only">(current)</span></a>
+            </li>    
+            <li class="nav-item">
+                <a class="nav-link" href="{{path('security_logout')}}">Logout</a>
+            </li>
+            <li class="nav-item">
+                    <a class="nav-link" href="{{path('user_show', {'id': app.user.id})}}">My profile</a> 
+                    {# je dois renvoyer vers user/edit/id où id correspond à app.user.id #}
+                </li>
+            {% endif %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{path('security_logout')}}">My Questions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{path('security_logout')}}">My Answers</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-outline-primary my-2 my-sm-0"  href="{{path('backend_question_new')}}">Ask A Question</a>
+            </li>
+        </ul>
+        <ul>
+            {% if is_granted('ROLE_MODERATOR') %}
+                {% include "partials/_admin_nav.html.twig" %}
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+   
+{% endblock %} 
+

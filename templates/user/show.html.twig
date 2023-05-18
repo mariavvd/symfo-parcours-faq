@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+    <h1>User</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Username</th>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+
+            <tr>
+                <th>Roles</th>
+                {% for role in user.roles %}
+                <td>
+                    {{ role|lower }}
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <a href="">add a role</a>
+                    {% endif %}
+                </td>
+                
+                {% endfor %}    
+            </tr>
+            <tr>
+                <th>Questions Asked</th>
+                {% if user.questions is empty%}
+                <td> No Questions yet. </td>
+                {% else %}
+                <td>
+                {% for question in user.questions %}
+                <a href="{{path('backend_question_show', {'id' : question.id})}}"> {{ question.title }} </a> <br>
+                {% endfor %} </td>   
+                {% endif %}
+            </tr>
+
+            <tr>
+                <th>Answers given</th>
+                {% if user.anwsers is empty %}
+                <td> No anwsers yet.</td>
+                {% else %}
+                <td>
+                {% for anwser in user.anwsers %}
+               <p> {{ anwser.body }} <br>
+                   <small> 
+                       <a href="{{path('backend_question_show', {'id' : anwser.question.id})}}"> To the question :</a> 
+                       <em> {{anwser.question.title}}</em>
+                    </small>
+               </p>
+                {% endfor %} </td>   
+                {% endif %}
+            </tr>
+
+           
+          
+            
+           
+        </tbody>
+    </table>
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('user') }}">back to users list</a>
+    {% endif %}
+    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+
+    {{ include('user/_delete_form.html.twig') }}
+{% endblock %}

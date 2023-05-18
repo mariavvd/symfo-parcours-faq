@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit the question{% endblock %}
+
+{% block body %}
+    <h1>Update your question</h1>
+    
+
+    {{ include('backend/question/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('backend_question_index') }}">back to list</a>
+
+    {{ include('backend/question/_delete_form.html.twig') }}
+{% endblock %}

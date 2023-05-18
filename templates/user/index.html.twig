@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User List{% endblock %}
+
+{% block body %}
+    <h1>User List</h1>
+
+    <table class="table">
+        <tbody>
+            {% for user in users %}  
+                <tr>
+                    <th>Username</th>
+                    <td>{{ user.username }}</td>
+                    <td><a href="{{path('user_show', {'id': user.id} )}}">
+                            User details</a></td>
+                </tr>            
+            {% endfor %}
+        </tbody>
+    </table>    
+
+{% endblock %}

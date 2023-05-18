@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New anwser{% endblock %}
+
+{% block body %}
+    <h1>Create new anwser</h1>
+   <p>for {{question.title}}</p>
+    {{ include('backend/anwser/_form.html.twig') }}
+
+   
+{% endblock %}

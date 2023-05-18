@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{question.title}}{% endblock %}
+
+{% block body %}
+    {% for tag in question.tags %}
+    <a class="btn" href="{{path('question_tag', {'id': tag.id})}}"> TAG {{tag.name}}</a>
+    
+    {% endfor %}
+   
+    <h1> question title : {{ question.title }}</h1>
+    <p> asked by : {{question.user}} : </p>
+    <p> question body : {{ question.body }}
+        <br>
+    </p>
+
+     {% for anwser in question.anwsers %}
+
+     <div>
+     <p> answer # : {{ anwser.body }} 
+        <br>
+        <small> by {{anwser.user}}</small>
+    </p>
+     
+     </br>
+    </div>
+    {% endfor %}
+
+{% endblock %}
